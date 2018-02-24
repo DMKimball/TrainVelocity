@@ -29,6 +29,8 @@ ModelImporter:
     100042: NurbsPath_002
     100044: NurbsPath_003
     100046: NurbsPath_004
+    100048: BezierCircle_006
+    100050: BezierCircle_007
     400000: BezierCircle
     400002: BezierCircle_001
     400004: BezierCircle_002
@@ -53,6 +55,8 @@ ModelImporter:
     400042: NurbsPath_002
     400044: NurbsPath_003
     400046: NurbsPath_004
+    400048: BezierCircle_006
+    400050: BezierCircle_007
     2100000: unnamed
     2300000: BezierCircle
     2300002: BezierCircle_001
@@ -77,6 +81,8 @@ ModelImporter:
     2300040: NurbsPath_002
     2300042: NurbsPath_003
     2300044: NurbsPath_004
+    2300046: BezierCircle_006
+    2300048: BezierCircle_007
     3300000: BezierCircle
     3300002: BezierCircle_001
     3300004: BezierCircle_002
@@ -100,6 +106,8 @@ ModelImporter:
     3300040: NurbsPath_002
     3300042: NurbsPath_003
     3300044: NurbsPath_004
+    3300046: BezierCircle_006
+    3300048: BezierCircle_007
     4300000: Cube_010
     4300002: Cube_009
     4300004: BezierCircle
@@ -123,6 +131,8 @@ ModelImporter:
     4300040: NurbsPath_003
     4300042: BezierCircle_005
     4300044: NurbsPath_004
+    4300046: BezierCircle_006
+    4300048: BezierCircle_007
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}

@@ -10,11 +10,16 @@ public class Grabbable : MonoBehaviour {
     [SerializeField] private Vector3 PosCorrection;
     [SerializeField] private Vector3 RotCorrection;
     [SerializeField] private float FPTolerance = 0.001f;
+    [SerializeField] private float SnapbackTime = 0.5f;
+    [SerializeField] private Transform SnapLocation;
 
     private Rigidbody grabbableBody;
     private List<SteamVR_TrackedController> touchingControllers;
     private Transform positionController;
     private Transform rotationController;
+    private float currLerpT;
+    private Vector3 startPos;
+    private Quaternion startRot;
 
 	// Use this for initialization
 	void Start () {
@@ -22,14 +27,15 @@ public class Grabbable : MonoBehaviour {
         touchingControllers = new List<SteamVR_TrackedController>();
         positionController = null;
         rotationController = null;
-    }
+        currLerpT = 1.0f;
+        transform.position = startPos = SnapLocation.position;
+        transform.rotation = startRot = SnapLocation.rotation;
+}
 	
 	// Update is called once per frame
 	void Update () {
         if(positionController != null)
         {
-            grabbableBody.isKinematic = true;
-
             Vector3 posOffset = positionAnchor.transform.position - transform.position;
             transform.position = positionController.position + posOffset + positionController.rotation * PosCorrection;
 
@@ -58,7 +64,8 @@ public class Grabbable : MonoBehaviour {
         }
         else
         {
-            grabbableBody.isKinematic = false;
+            //currTime += Time.deltaTime;
+            //transform.position = Vector3.Lerp()
         }
 	}
 
@@ -146,6 +153,7 @@ public class Grabbable : MonoBehaviour {
         else
         {
             positionController = rotationController = null;
+            currTime = 0.0f;
         }
     }
 }

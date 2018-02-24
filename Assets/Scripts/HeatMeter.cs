@@ -21,7 +21,6 @@ public class HeatMeter : MonoBehaviour {
     {
         heatLevel = Mathf.Clamp01(newHeat)*100;
         currAngle = Mathf.Clamp(minDegrees + (heatLevel / 100 * (maxDegrees - minDegrees)), minDegrees, maxDegrees);
-        Debug.Log(currAngle);
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, currAngle);
     }
 }

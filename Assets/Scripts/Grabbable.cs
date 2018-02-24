@@ -64,8 +64,10 @@ public class Grabbable : MonoBehaviour {
         }
         else
         {
-            //currTime += Time.deltaTime;
-            //transform.position = Vector3.Lerp()
+            currLerpT += Time.deltaTime / SnapbackTime;
+            transform.position = Vector3.Lerp(startPos, SnapLocation.position, currLerpT);
+            transform.rotation = Quaternion.Slerp(startRot, SnapLocation.rotation, currLerpT);
+
         }
 	}
 
@@ -153,7 +155,9 @@ public class Grabbable : MonoBehaviour {
         else
         {
             positionController = rotationController = null;
-            //currTime = 0.0f;
+            currLerpT = 0.0f;
+            startPos = transform.position;
+            startRot = transform.rotation;
         }
     }
 }

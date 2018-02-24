@@ -31,6 +31,9 @@ ModelImporter:
     100046: NurbsPath_004
     100048: BezierCircle_006
     100050: BezierCircle_007
+    100052: BezierCircle_008
+    100054: BezierCircle_009
+    100056: NurbsPath_000
     400000: BezierCircle
     400002: BezierCircle_001
     400004: BezierCircle_002
@@ -57,6 +60,9 @@ ModelImporter:
     400046: NurbsPath_004
     400048: BezierCircle_006
     400050: BezierCircle_007
+    400052: BezierCircle_008
+    400054: BezierCircle_009
+    400056: NurbsPath_000
     2100000: unnamed
     2300000: BezierCircle
     2300002: BezierCircle_001
@@ -83,6 +89,9 @@ ModelImporter:
     2300044: NurbsPath_004
     2300046: BezierCircle_006
     2300048: BezierCircle_007
+    2300050: BezierCircle_008
+    2300052: BezierCircle_009
+    2300054: NurbsPath_000
     3300000: BezierCircle
     3300002: BezierCircle_001
     3300004: BezierCircle_002
@@ -108,6 +117,9 @@ ModelImporter:
     3300044: NurbsPath_004
     3300046: BezierCircle_006
     3300048: BezierCircle_007
+    3300050: BezierCircle_008
+    3300052: BezierCircle_009
+    3300054: NurbsPath_000
     4300000: Cube_010
     4300002: Cube_009
     4300004: BezierCircle
@@ -133,6 +145,9 @@ ModelImporter:
     4300044: NurbsPath_004
     4300046: BezierCircle_006
     4300048: BezierCircle_007
+    4300050: BezierCircle_008
+    4300052: BezierCircle_009
+    4300054: NurbsPath_000
     7400000: Default Take
     9500000: //RootNode
   externalObjects:
@@ -140,7 +155,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: unnamed
-    second: {fileID: 2100000, guid: a2e142cf68d8be94f9d081e5f0282688, type: 2}
+    second: {fileID: 2100000, guid: 59c1bced0bdaccd478cee29c79b630f3, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

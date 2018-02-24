@@ -115,7 +115,7 @@ Transform:
   m_GameObject: {fileID: 1813336073055224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.34, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.4446883, z: 0.4446883}
+  m_LocalScale: {x: 0.4446883, y: 0.4446883, z: 0.05}
   m_Children: []
   m_Father: {fileID: 4713976057311612}
   m_RootOrder: 1
@@ -298,5 +298,5 @@ MonoBehaviour:
   positionAnchor: {fileID: 4590813045666938}
   rotationAnchor: {fileID: 4398686266786018}
   PosCorrection: {x: 0, y: -0.0343, z: 0.0127}
-  RotCorrection: {x: 0, y: 0, z: 0}
+  RotCorrection: {x: 90, y: 0, z: 0}
   FPTolerance: 0.0001

@@ -343,3 +343,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coalPrefab: {fileID: 1105499642059678, guid: 6256e717c3ac7b640bafb278d95c4b0b, type: 2}
   coalAnchor: {fileID: 4425327594051166}
+  train: {fileID: 0}

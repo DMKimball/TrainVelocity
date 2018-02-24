@@ -6,6 +6,7 @@ public class CoalMover : MonoBehaviour {
 
     [SerializeField] private GameObject coalPrefab;
     [SerializeField] private Transform coalAnchor;
+    [SerializeField] private TrainMovement train;
 
     private bool hasCoal;
     private Transform coal;
@@ -34,6 +35,7 @@ public class CoalMover : MonoBehaviour {
         else if(other.tag.Equals("CoalConsumer") && hasCoal)
         {
             hasCoal = false;
+            train.AddFuel();
             Destroy(coal.gameObject);
         }
     }

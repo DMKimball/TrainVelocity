@@ -42,12 +42,13 @@ public class Grabbable : MonoBehaviour {
                 Quaternion rotation = Quaternion.FromToRotation(currentDirection, targetDirection);
                 transform.rotation = rotation * transform.rotation;
 
-                Vector3 projectedContUp = Vector3.ProjectOnPlane(rotationController.up, rotationAnchor.up);
-                if(projectedContUp.magnitude > FPTolerance)
+                Vector3 controllerUp = rotationAnchor.transform.InverseTransformDirection(rotationController.transform.up);
+                if(controllerUp.x > FPTolerance || controllerUp.z > FPTolerance)
                 {
-                    float rotAngle = Vector3.Angle(rotationAnchor.right, projectedContUp.normalized);
-                    Debug.Log("Rotation Angle: " + rotAngle);
-                    if (rotAngle > FPTolerance) transform.rotation = Quaternion.AngleAxis(-rotAngle, rotationAnchor.up) * transform.rotation;
+                    float rawAngle = Mathf.Atan2(controllerUp.x, controllerUp.z) * Mathf.Rad2Deg;
+                    Debug.Log("Raw Angle: " + rawAngle);
+                    float rotAngle = rawAngle;
+                    transform.rotation = Quaternion.AngleAxis(rotAngle, rotationAnchor.up) * transform.rotation;
                 }
             }
             else
@@ -68,7 +69,7 @@ public class Grabbable : MonoBehaviour {
             SteamVR_TrackedController controller = other.transform.GetComponent<SteamVR_TrackedController>();
             controller.TriggerClicked += OnControllerTriggerChange;
             controller.TriggerUnclicked += OnControllerTriggerChange;
-            touchingControllers.Add(controller);
+            if(!touchingControllers.Contains(controller)) touchingControllers.Add(controller);
         }
     }
 
@@ -83,8 +84,7 @@ public class Grabbable : MonoBehaviour {
             {
                 UpdateAnchors();
             }
-
-            touchingControllers.Remove(controller);
+            if (touchingControllers.Contains(controller)) touchingControllers.Remove(controller);
         }
     }
 
@@ -127,7 +127,7 @@ public class Grabbable : MonoBehaviour {
                 foreach (int index in activeIndices)
                 {
                     if (index == minPosIndex) continue;
-                    float distance = Vector3.Distance(touchingControllers[index].transform.position, positionAnchor.position);
+                    float distance = Vector3.Distance(touchingControllers[index].transform.position, rotationAnchor.position);
                     if (distance < minRotDistance)
                     {
                         minRotDistance = distance;

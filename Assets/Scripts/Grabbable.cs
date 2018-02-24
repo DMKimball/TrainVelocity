@@ -8,7 +8,8 @@ public class Grabbable : MonoBehaviour {
     [SerializeField] private Transform positionAnchor;
     [SerializeField] private Transform rotationAnchor;
     [SerializeField] private Vector3 PosCorrection;
-    [SerializeField] private Vector3 RotCorrection;
+    [SerializeField] private Vector3 RotCorrection1H;
+    [SerializeField] private Vector3 RotCorrection2H;
     [SerializeField] private float FPTolerance = 0.001f;
 
     private Rigidbody grabbableBody;
@@ -42,17 +43,18 @@ public class Grabbable : MonoBehaviour {
                 Quaternion rotation = Quaternion.FromToRotation(currentDirection, targetDirection);
                 transform.rotation = rotation * transform.rotation;
 
-                Vector3 projectedContUp = Vector3.ProjectOnPlane(rotationController.up, rotationAnchor.up);
-                if(projectedContUp.magnitude > FPTolerance)
+                Vector3 controllerUp = rotationAnchor.transform.InverseTransformDirection(rotationController.transform.up);
+                if(controllerUp.x > FPTolerance || controllerUp.z > FPTolerance)
                 {
-                    float rotAngle = Vector3.Angle(rotationAnchor.right, projectedContUp.normalized);
-                    Debug.Log("Rotation Angle: " + rotAngle);
-                    if (rotAngle > FPTolerance) transform.rotation = Quaternion.AngleAxis(-rotAngle, rotationAnchor.up) * transform.rotation;
+                    float rawAngle = Mathf.Atan2(controllerUp.x, controllerUp.z) * Mathf.Rad2Deg;
+                    Debug.Log("Raw Angle: " + rawAngle);
+                    float rotAngle = rawAngle;
+                    transform.rotation = Quaternion.AngleAxis(rotAngle, rotationAnchor.up) * transform.rotation * Quaternion.Euler(RotCorrection1H.x, 0, 0) * Quaternion.Euler(0, RotCorrection1H.y, 0) * Quaternion.Euler(0, 0, RotCorrection1H.z);
                 }
             }
             else
             {
-                transform.rotation = positionController.rotation * Quaternion.Euler(RotCorrection.x, 0, 0) * Quaternion.Euler(0, RotCorrection.y, 0) * Quaternion.Euler(0, 0, RotCorrection.z);
+                transform.rotation = positionController.rotation * Quaternion.Euler(RotCorrection1H.x, 0, 0) * Quaternion.Euler(0, RotCorrection1H.y, 0) * Quaternion.Euler(0, 0, RotCorrection1H.z);
             }
         }
         else

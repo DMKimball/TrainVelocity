@@ -153,7 +153,7 @@ public class Grabbable : MonoBehaviour {
         else
         {
             positionController = rotationController = null;
-            currTime = 0.0f;
+            //currTime = 0.0f;
         }
     }
 }

@@ -8,12 +8,15 @@ public class CoalMover : MonoBehaviour {
     [SerializeField] private Transform coalAnchor;
     [SerializeField] private TrainMovement train;
 
+    private Grabbable grabScript;
+
     private bool hasCoal;
     private Transform coal;
 
 	// Use this for initialization
 	void Start () {
         hasCoal = false;
+        grabScript = GetComponent<Grabbable>();
 	}
 	
 	// Update is called once per frame
@@ -31,11 +34,13 @@ public class CoalMover : MonoBehaviour {
         {
             hasCoal = true;
             coal = Instantiate(coalPrefab).transform;
+            grabScript.RegisterAttachment(coal);
         }
         else if(other.tag.Equals("CoalConsumer") && hasCoal)
         {
             hasCoal = false;
             train.AddFuel();
+            grabScript.DeregisterAttachment(coal);
             Destroy(coal.gameObject);
         }
     }

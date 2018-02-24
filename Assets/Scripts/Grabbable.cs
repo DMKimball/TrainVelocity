@@ -20,6 +20,7 @@ public class Grabbable : MonoBehaviour {
     private float currLerpT;
     private Vector3 startPos;
     private Quaternion startRot;
+    private List<Transform> attachedObjs;
 
 	// Use this for initialization
 	void Start () {
@@ -30,7 +31,8 @@ public class Grabbable : MonoBehaviour {
         currLerpT = 1.0f;
         transform.position = startPos = SnapLocation.position;
         transform.rotation = startRot = SnapLocation.rotation;
-}
+        attachedObjs = new List<Transform>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -159,5 +161,25 @@ public class Grabbable : MonoBehaviour {
             startPos = transform.position;
             startRot = transform.rotation;
         }
+    }
+
+    public void Translate(Vector3 translation)
+    {
+        transform.position += translation;
+        startPos += translation;
+        foreach(Transform attachment in attachedObjs)
+        {
+            attachment.position += translation;
+        }
+    }
+
+    public void RegisterAttachment(Transform attachment)
+    {
+        if(!attachedObjs.Contains(attachment)) attachedObjs.Add(attachment);
+    }
+
+    public void DeregisterAttachment(Transform attachment)
+    {
+        if (attachedObjs.Contains(attachment)) attachedObjs.Remove(attachment);
     }
 }

@@ -158,13 +158,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1969258031454670}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.355, z: 0.134}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.05516273, y: 0.8985542, z: -0.11829687, w: 0.41900265}
+  m_LocalPosition: {x: 0, y: 0.33, z: 0.07}
+  m_LocalScale: {x: 0.028, y: 0.028, z: 0.028}
   m_Children: []
   m_Father: {fileID: 4713976057311612}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 130, z: 0}
 --- !u!4 &4564216316670614
 Transform:
   m_ObjectHideFlags: 1
@@ -438,7 +438,7 @@ MonoBehaviour:
   positionAnchor: {fileID: 4590813045666938}
   rotationAnchor: {fileID: 4398686266786018}
   PosCorrection: {x: 0, y: -0.0343, z: 0.0127}
-  RotCorrection: {x: 90, y: 0, z: 0}
+  RotCorrection: {x: 90, y: 180, z: 0}
   FPTolerance: 0.0001
   SnapbackTime: 0.5
   SnapLocation: {fileID: 0}
@@ -453,6 +453,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea0c87174ba5314385dcc93e2fc7ff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coalPrefab: {fileID: 1105499642059678, guid: 6256e717c3ac7b640bafb278d95c4b0b, type: 2}
+  coalPrefab: {fileID: 1128792783695382, guid: 2ef000bad37cd24478494ec9bf3545ac, type: 2}
   coalAnchor: {fileID: 4425327594051166}
   train: {fileID: 0}
+  audioSource: {fileID: 82837751913552790}
+  coalPickupSounds:
+  - {fileID: 8300000, guid: 81d48ee6b9e826e449c9784775fa4fe2, type: 3}
+  - {fileID: 8300000, guid: f56ed63156d49e24fa39cc5e2ffced50, type: 3}
+  - {fileID: 8300000, guid: b7f02ee85078f444fa2f1af3fce7a2c2, type: 3}
+  coalDropSounds:
+  - {fileID: 8300000, guid: c020ea73692c03c48b6a016a9baa3bf1, type: 3}
+  - {fileID: 8300000, guid: 27a781738c97c9841bc5a958f99662bf, type: 3}
+  - {fileID: 8300000, guid: 9d9de43f4521c0040a5decacdab58df6, type: 3}

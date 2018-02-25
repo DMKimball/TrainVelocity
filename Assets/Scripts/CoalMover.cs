@@ -28,7 +28,8 @@ public class CoalMover : MonoBehaviour {
 		if(hasCoal)
         {
             coal.position = coalAnchor.position;
-            coal.rotation = coalAnchor.rotation; 
+            coal.rotation = coalAnchor.rotation;
+            coal.localScale = coalAnchor.localScale;
         }
 
         // Patrick Testing

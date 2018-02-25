@@ -17,19 +17,15 @@ public class TrainMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         speed = DefaultSpeed;
-        speedy = GameObject.FindObjectOfType<spedometer>();
+        speedy = GetComponentInChildren<spedometer>();
         heat = GetComponent<heatManagement>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         speed = Mathf.Max(speed - DecelerationPerSecond * Time.deltaTime, DefaultSpeed);
-        transform.position += transform.forward * speed * Time.deltaTime;
+        Translate(transform.forward * speed * Time.deltaTime);
         speedy.setSpeed(speed / maxSpeed);
-        foreach(Grabbable obj in looseObjects)
-        {
-            obj.Translate(transform.forward * speed * Time.deltaTime);
-        }
 
 	}
 
@@ -37,5 +33,14 @@ public class TrainMovement : MonoBehaviour {
     {
         speed += AccelerationPerFuel;
         heat.addFuel();
+    }
+
+    public void Translate(Vector3 translation)
+    {
+        transform.position += translation;
+        foreach (Grabbable obj in looseObjects)
+        {
+            obj.Translate(translation);
+        }
     }
 }

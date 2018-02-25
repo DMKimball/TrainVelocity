@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
+
 public class heatManagement : MonoBehaviour {
     float heatLevel=0;
     HeatMeter heatMeter;
@@ -26,7 +27,7 @@ public class heatManagement : MonoBehaviour {
         }
         if (heatLevel>100)
         {
-            Application.LoadLevel(Application.loadedLevel);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 	}
     public void addFuel()

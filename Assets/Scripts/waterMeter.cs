@@ -9,12 +9,13 @@ public class waterMeter : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         meter = GetComponent<Slider>();
+        updateSlider();
 	}
 	
 	// Update is called once per frame
 	void Update () {       
 	}
-    public void setWater(float newWater)
+    public void updateSlider()
     {
         meter.value = Mathf.Clamp01(waterValue);
     }

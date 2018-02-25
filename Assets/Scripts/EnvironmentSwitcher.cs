@@ -35,7 +35,8 @@ public class EnvironmentSwitcher : MonoBehaviour {
         int numSpawns = baseNumWaterSpawns + (int)Mathf.Floor((1.0f - water.waterValue) / bonusSpawnPerMissing);
         for(int count = 0; count < numSpawns; count++)
         {
-            Instantiate(waterPrefab, temp.transform.position + baseLocation + Random.Range(0.0f, 1.0f) * maxOffset, Quaternion.Euler(rotCorrection), temp.transform);
+            GameObject spawn = Instantiate(waterPrefab, temp.transform.position + baseLocation + Random.Range(0.0f, 1.0f) * maxOffset, Quaternion.Euler(rotCorrection), temp.transform);
+            spawn.GetComponentInChildren<TargetHit>().water = water;
         }
         PreviousTerrain.position += transform.right * terrainLength;
         CurrentTerrain.position += transform.right * terrainLength;

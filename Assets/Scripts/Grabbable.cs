@@ -54,7 +54,6 @@ public class Grabbable : MonoBehaviour {
                 if(controllerUp.x > FPTolerance || controllerUp.z > FPTolerance)
                 {
                     float rawAngle = Mathf.Atan2(controllerUp.x, controllerUp.z) * Mathf.Rad2Deg;
-                    Debug.Log("Raw Angle: " + rawAngle);
                     float rotAngle = rawAngle;
                     transform.rotation = Quaternion.AngleAxis(rotAngle, rotationAnchor.up) * transform.rotation;
                 }

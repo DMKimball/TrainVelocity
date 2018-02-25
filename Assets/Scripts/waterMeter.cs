@@ -8,7 +8,7 @@ public class waterMeter : MonoBehaviour {
     Slider meter;
 	// Use this for initialization
 	void Start () {
-		
+        meter = GetComponent<Slider>();
 	}
 	
 	// Update is called once per frame

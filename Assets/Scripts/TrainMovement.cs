@@ -7,6 +7,7 @@ public class TrainMovement : MonoBehaviour {
     [SerializeField] private float AccelerationPerFuel = 1.5f;
     [SerializeField] private float DecelerationPerSecond = 0.1f;
     [SerializeField] private float DefaultSpeed = 0.0f;
+    [SerializeField] private SoundFade WindSoundFade;
 
     [SerializeField] private Grabbable[] looseObjects;
 
@@ -17,19 +18,38 @@ public class TrainMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         speed = DefaultSpeed;
-        speedy = GameObject.FindObjectOfType<spedometer>();
+        speedy = GetComponentInChildren<spedometer>();
         heat = GetComponent<heatManagement>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        speed = Mathf.Max(speed - DecelerationPerSecond * Time.deltaTime, DefaultSpeed);
-        transform.position += transform.forward * speed * Time.deltaTime;
-        speedy.setSpeed(speed / maxSpeed);
-        foreach(Grabbable obj in looseObjects)
-        {
-            obj.Translate(transform.forward * speed * Time.deltaTime);
+        // Set the volume of the persistent background loop based on speed.
+        // Volume ranges from 0 to 1.
+        GetComponentInChildren<SoundFade>().SetVolume(speed / maxSpeed * 0.5f);
+        // Set the volume of the persistent outdoor wind sound.
+        // Volume ranges from 0 to 1.
+        WindSoundFade.SetVolume(speed / maxSpeed);
+
+        // Patrick testing
+        /*if (Input.GetButtonDown("Fire1")) {
+            //GameObject.Find("[CameraRig]").transform.position
+            //    += (new Vector3(0.1f, 0.0f, 0.0f));
+            speed += maxSpeed/5;
         }
+        if (Input.GetButtonDown("Fire2")) {
+            //GameObject.Find("[CameraRig]").transform.position
+            //    += (new Vector3(-0.1f, 0.0f, 0.0f));
+            speed -= maxSpeed/5;
+        }
+        GameObject.Find("[CameraRig]").transform.position = 
+            new Vector3(transform.position.x, transform.position.y,
+                GameObject.Find("train4").transform.position.z);
+        */
+
+        speed = Mathf.Max(speed - DecelerationPerSecond * Time.deltaTime, DefaultSpeed);
+        Translate(transform.forward * speed * Time.deltaTime);
+        speedy.setSpeed(speed / maxSpeed);
 
 	}
 
@@ -37,5 +57,14 @@ public class TrainMovement : MonoBehaviour {
     {
         speed += AccelerationPerFuel;
         heat.addFuel();
+    }
+
+    public void Translate(Vector3 translation)
+    {
+        transform.position += translation;
+        foreach (Grabbable obj in looseObjects)
+        {
+            obj.Translate(translation);
+        }
     }
 }

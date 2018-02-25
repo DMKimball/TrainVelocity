@@ -23,7 +23,6 @@ public class spedometer : MonoBehaviour {
     {
         speedLevel = Mathf.Clamp01(newSpeed) * 100;
         currAngle = Mathf.Clamp(minDegrees + (speedLevel / 100 * (maxDegrees - minDegrees)), minDegrees, maxDegrees);
-        Debug.Log(currAngle);
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, currAngle);
     }
 }

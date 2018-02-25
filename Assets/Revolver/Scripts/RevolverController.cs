@@ -33,7 +33,7 @@ public class RevolverController : MonoBehaviour {
 		if (cylTr.localRotation.eulerAngles.y < endAngle ) {
 			rotatingCyl = true;
 			Quaternion target = Quaternion.Euler (0, endAngle, 0); 
-			cylTr.localRotation = Quaternion.RotateTowards (cylTr.localRotation, target, Time.deltaTime * 100F);
+			cylTr.localRotation = Quaternion.RotateTowards (cylTr.localRotation, target, Time.deltaTime * revRotSpeed);
 		} else {
 			rotatingCyl = false;
 			endAngle += 60F;

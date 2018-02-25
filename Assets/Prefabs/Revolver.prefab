@@ -50,7 +50,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4545719938688586}
   m_Layer: 0
-  m_Name: PosAnchor
+  m_Name: FiringOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 114955283138104042}
   - component: {fileID: 136304763080901054}
   - component: {fileID: 54410529398963598}
+  - component: {fileID: 114239361109406870}
   m_Layer: 0
   m_Name: Revolver
   m_TagString: Untagged
@@ -380,6 +381,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1738339881827840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4449905518084752}
+  m_Layer: 0
+  m_Name: PosAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1750814607039872
 GameObject:
   m_ObjectHideFlags: 1
@@ -564,12 +580,13 @@ Transform:
   m_GameObject: {fileID: 1257548504833218}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 2.168, y: 3.758, z: 2.253}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4542045473479368}
   - {fileID: 4954452778207778}
-  - {fileID: 4545719938688586}
+  - {fileID: 4449905518084752}
   - {fileID: 4486195741073500}
+  - {fileID: 4545719938688586}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -668,6 +685,19 @@ Transform:
   m_Father: {fileID: 4562002244341562}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4449905518084752
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1738339881827840}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0382, z: -0.1042}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4311581143192544}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4473587199180342
 Transform:
   m_ObjectHideFlags: 1
@@ -702,13 +732,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1933610274655290}
-  m_LocalRotation: {x: 0.2840153, y: 0, z: 0, w: 0.95881975}
-  m_LocalPosition: {x: 0, y: -0.041, z: -0.143}
+  m_LocalRotation: {x: -0.003919498, y: 0.9725872, z: 0.23223814, w: -0.011142418}
+  m_LocalPosition: {x: 0, y: -0.041000023, z: -0.14300014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4311581143192544}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 33, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -26.85, y: 181.50899, z: -0.822}
 --- !u!4 &4542045473479368
 Transform:
   m_ObjectHideFlags: 1
@@ -733,12 +763,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1086958113179546}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: -0.098}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.069, z: 0.147}
+  m_LocalScale: {x: 1, y: 1.0000005, z: 1.0000005}
   m_Children: []
   m_Father: {fileID: 4311581143192544}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4562002244341562
 Transform:
@@ -1391,6 +1421,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   revRotSpeed: 10
   cylTr: {fileID: 4562002244341562}
+--- !u!114 &114239361109406870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1257548504833218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25abbe15130c0434db48fac742e55a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firingOrigin: {fileID: 4545719938688586}
 --- !u!114 &114955283138104042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1402,10 +1444,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41940ad4b7a57c4081b40f1a92f3805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionAnchor: {fileID: 4545719938688586}
+  positionAnchor: {fileID: 4449905518084752}
   rotationAnchor: {fileID: 4486195741073500}
   PosCorrection: {x: 0, y: 0, z: 0}
-  RotCorrection: {x: 0, y: 0, z: 0}
+  RotCorrection: {x: 30, y: 0, z: 0}
   FPTolerance: 0.001
   SnapbackTime: 0.5
   SnapLocation: {fileID: 0}

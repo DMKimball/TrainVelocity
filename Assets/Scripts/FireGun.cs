@@ -61,8 +61,16 @@ public class FireGun : MonoBehaviour {
         if (onCooldown) return;
         else onCooldown = true;
 
-        GetComponentInChildren<AudioSource>().Stop();
-        GetComponentInChildren<AudioSource>().Play();
+        var a = GetComponentInChildren<AudioSource>();
+        a.Stop();
+        a.pitch = 1 + Random.Range(-0.1f, 0.1f);
+        a.Play();
+
+        // Haptic feedback on first touching controller (hacky...)
+        /*if (touchingControllers.Count > 0) {
+            var controller = touchingControllers[0];
+            controller.TriggerHapticPulse(0.1f);
+        }*/
 
         RaycastHit rayHit;
         bool hitSomething = Physics.Raycast(firingOrigin.position, firingOrigin.forward, out rayHit, float.PositiveInfinity);

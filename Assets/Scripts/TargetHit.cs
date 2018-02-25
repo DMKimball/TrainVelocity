@@ -46,7 +46,11 @@ public class TargetHit : MonoBehaviour {
             if (currPosT >= 1.0f)
             {
                 dropping = false;
-                water.GetComponent<AudioSource>().Play();
+
+                var a = water.GetComponent<AudioSource>();
+                a.pitch = 1 + Random.Range(-0.1f, 0.1f);
+                a.Play();
+
                 water.waterValue = Mathf.Min(1.0f, water.waterValue + waterValue);
                 water.updateSlider();
             }

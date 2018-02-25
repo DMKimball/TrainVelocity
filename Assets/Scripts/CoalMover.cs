@@ -8,6 +8,10 @@ public class CoalMover : MonoBehaviour {
     [SerializeField] private Transform coalAnchor;
     [SerializeField] private TrainMovement train;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] coalPickupSounds;
+    [SerializeField] private AudioClip[] coalDropSounds;
+
     private Grabbable grabScript;
 
     private bool hasCoal;
@@ -26,6 +30,11 @@ public class CoalMover : MonoBehaviour {
             coal.position = coalAnchor.position;
             coal.rotation = coalAnchor.rotation; 
         }
+
+        // Patrick Testing
+        /*if (Input.GetButtonDown("Fire1")) {
+            PlayRandomClip(coalPickupSounds);
+        }*/
 	}
 
     void OnTriggerEnter(Collider other)
@@ -35,6 +44,8 @@ public class CoalMover : MonoBehaviour {
             hasCoal = true;
             coal = Instantiate(coalPrefab).transform;
             grabScript.RegisterAttachment(coal);
+
+            PlayRandomClip(coalPickupSounds);
         }
         else if(other.tag.Equals("CoalConsumer") && hasCoal)
         {
@@ -42,6 +53,17 @@ public class CoalMover : MonoBehaviour {
             train.AddFuel();
             grabScript.DeregisterAttachment(coal);
             Destroy(coal.gameObject);
+
+            PlayRandomClip(coalDropSounds);
+
+            //other.GetComponentInChildren<AudioSource>()
         }
+    }
+
+    void PlayRandomClip(AudioClip[] clipArray) {
+        audioSource.Stop();
+        audioSource.clip = clipArray[Random.Range(0, clipArray.Length)];
+        audioSource.pitch = 1 + Random.Range(-0.1f, 0.1f);
+        audioSource.Play();
     }
 }

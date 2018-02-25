@@ -7,6 +7,7 @@ TagManager:
   - CoalProducer
   - CoalConsumer
   - Coal
+  - Water
   layers:
   - Default
   - TransparentFX

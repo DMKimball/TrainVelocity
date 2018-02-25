@@ -28,8 +28,11 @@ public class EnvironmentSwitcher : MonoBehaviour {
     [SerializeField] private int totalStages;
     public int numTimesSwitched;
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField] private AudioSource winSound;
+    [SerializeField] private AudioSource loseSound;
+
+    // Use this for initialization
+    void Start () {
         numTimesSwitched = 0;
 	}
 
@@ -65,10 +68,11 @@ public class EnvironmentSwitcher : MonoBehaviour {
             if (train.IsAtMaxSpeed())
             {
                 train.StartFlying();
+                winSound.Play();
             }
             else
             {
-
+                loseSound.Play();
             }
             StartCoroutine(EndGame(fadeTime + 1));
         }

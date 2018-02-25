@@ -47,10 +47,6 @@ public class TargetHit : MonoBehaviour {
                     GetComponentInChildren<AudioSource>().Play();
             }
         }
-
-        if (Input.GetButtonDown("Fire1")) {
-            Bullseye();
-        }
 	}
 
     public void Bullseye()

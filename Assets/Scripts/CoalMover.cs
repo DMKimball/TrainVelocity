@@ -7,6 +7,7 @@ public class CoalMover : MonoBehaviour {
     [SerializeField] private GameObject coalPrefab;
     [SerializeField] private Transform coalAnchor;
     [SerializeField] private TrainMovement train;
+    [SerializeField] private GameObject furnaceBurstParticles;
 
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] coalPickupSounds;
@@ -54,6 +55,7 @@ public class CoalMover : MonoBehaviour {
 
             // Play furnace woosh sound (child of the cylinder)
             other.GetComponentInChildren<AudioSource>().Play();
+            Instantiate(furnaceBurstParticles, other.transform);
         }
     }
 

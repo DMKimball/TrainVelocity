@@ -28,7 +28,7 @@ public class Whistle : MonoBehaviour {
         }
 
         // Patrick testing
-        pressing = Input.GetButton("Fire1");
+        //pressing = Input.GetButton("Fire1");
 
         if (pressing) {
             dist += distSpeed * Time.deltaTime;

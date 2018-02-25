@@ -57,7 +57,7 @@ public class EnvironmentSwitcher : MonoBehaviour {
         PreviousTerrain = CurrentTerrain;
         CurrentTerrain = NextTerrain;
         NextTerrain = temp.transform;
-        
+
         train.Translate(transform.right * terrainLength);
         numTimesSwitched++;
         progress.value = ((float) numTimesSwitched) / (float)totalStages;

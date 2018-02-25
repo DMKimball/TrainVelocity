@@ -10,6 +10,7 @@ public class TrainMovement : MonoBehaviour {
     [SerializeField] private float MaxAcceleration = 5.0f;
     [SerializeField] private float MinWaterUse = 0.005f;
     [SerializeField] private float MaxWaterUse = 0.05f;
+    [SerializeField] private float RotateTime = 10.0f;
     [SerializeField] private SoundFade WindSoundFade;
 
     [SerializeField] private Grabbable[] looseObjects;
@@ -19,11 +20,15 @@ public class TrainMovement : MonoBehaviour {
     private float speed;
     spedometer speedy;
     heatManagement heat;
+    private bool flying;
+    private float flightT;
+
 	// Use this for initialization
 	void Start () {
         speed = MinSpeed;
         speedy = GetComponentInChildren<spedometer>();
         heat = GetComponent<heatManagement>();
+        flying = false;
 	}
 	
 	// Update is called once per frame
@@ -50,6 +55,11 @@ public class TrainMovement : MonoBehaviour {
         Translate(transform.forward * speed * Time.deltaTime);
         speedy.setSpeed(speed / MaxSpeed);
 
+        if(flying)
+        {
+            flightT += Time.deltaTime / RotateTime;
+            transform.rotation = Quaternion.Slerp(Quaternion.identity, Quaternion.Euler(-90.0f, 0, 0), flightT);
+        }
 	}
 
     public void AddFuel()
@@ -64,5 +74,16 @@ public class TrainMovement : MonoBehaviour {
         {
             obj.Translate(translation);
         }
+    }
+
+    public void StartFlying()
+    {
+        flightT = 0.0f;
+        flying = true;
+    }
+
+    public bool IsAtMaxSpeed()
+    {
+        return Mathf.Abs(speed - MaxSpeed) < 0.01f;
     }
 }

@@ -65,7 +65,7 @@ public class EnvironmentSwitcher : MonoBehaviour {
         if(numTimesSwitched == totalStages)
         {
             fadetoblack.FadeOut(fadeTime);
-            if (train.IsAtMaxSpeed())
+            if (true || train.IsAtMaxSpeed())
             {
                 train.StartFlying();
                 winSound.Play();

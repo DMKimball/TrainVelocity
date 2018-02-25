@@ -51,10 +51,6 @@ public class TargetHit : MonoBehaviour {
                 water.updateSlider();
             }
         }
-
-        if (Input.GetButtonDown("Fire1")) {
-            Bullseye();
-        }
 	}
 
     public void Bullseye()

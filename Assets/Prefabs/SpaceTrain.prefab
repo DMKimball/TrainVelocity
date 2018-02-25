@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 114275882607514512}
   - component: {fileID: 136464908428991304}
   - component: {fileID: 114944312280490838}
+  - component: {fileID: 114500976205455860}
   m_Layer: 0
   m_Name: Controller (right)
   m_TagString: GameController
@@ -887,6 +888,7 @@ GameObject:
   - component: {fileID: 114126520477067280}
   - component: {fileID: 136211405846804746}
   - component: {fileID: 114539045201436710}
+  - component: {fileID: 114183109668632788}
   m_Layer: 0
   m_Name: Controller (left)
   m_TagString: GameController
@@ -4605,6 +4607,17 @@ MonoBehaviour:
   right: {fileID: 1290403350049412}
   objects: []
   assignAllBeforeIdentified: 0
+--- !u!114 &114183109668632788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1709908629450580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4c9db0ba391604bbecbb845d05eed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114183824262518938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4740,6 +4753,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d0a8683329c1d42af5f01e4a5f009f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114500976205455860
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1290403350049412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4c9db0ba391604bbecbb845d05eed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114539045201436710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4769,7 +4793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7395714979b0484ca2a60524b7dbf26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AccelerationPerFuel: 1.5
+  AccelerationPerFuel: 15
   DecelerationPerSecond: 0.1
   DefaultSpeed: 0
   WindSoundFade: {fileID: 114480982681276878}

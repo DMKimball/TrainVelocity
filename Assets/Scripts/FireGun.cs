@@ -55,6 +55,10 @@ public class FireGun : MonoBehaviour {
     {
         if (onCooldown) return;
         else onCooldown = true;
+
+        GetComponentInChildren<AudioSource>().Stop();
+        GetComponentInChildren<AudioSource>().Play();
+
         RaycastHit rayHit;
         bool hitSomething = Physics.Raycast(firingOrigin.position, firingOrigin.forward, out rayHit);
         StartCoroutine(AnimateCylinder());

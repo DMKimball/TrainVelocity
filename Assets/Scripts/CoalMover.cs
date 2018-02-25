@@ -56,7 +56,8 @@ public class CoalMover : MonoBehaviour {
 
             PlayRandomClip(coalDropSounds);
 
-            //other.GetComponentInChildren<AudioSource>()
+            // Play furnace woosh sound (child of the cylinder)
+            other.GetComponentInChildren<AudioSource>().Play();
         }
     }
 

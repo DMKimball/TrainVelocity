@@ -51,6 +51,9 @@ public class CoalMover : MonoBehaviour {
             Destroy(coal.gameObject);
 
             PlayRandomClip(coalDropSounds);
+
+            // Play furnace woosh sound (child of the cylinder)
+            other.GetComponentInChildren<AudioSource>().Play();
         }
     }
 

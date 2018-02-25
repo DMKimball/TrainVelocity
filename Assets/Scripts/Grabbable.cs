@@ -77,8 +77,11 @@ public class Grabbable : MonoBehaviour {
         if(other.tag.Equals("GameController"))
         {
             SteamVR_TrackedController controller = other.transform.GetComponent<SteamVR_TrackedController>();
-            controller.TriggerClicked += OnControllerTriggerChange;
-            controller.TriggerUnclicked += OnControllerTriggerChange;
+            if(controller.transform != positionController && controller.transform != rotationController)
+            {
+                controller.TriggerClicked += OnControllerTriggerChange;
+                controller.TriggerUnclicked += OnControllerTriggerChange;
+            }
             if(!touchingControllers.Contains(controller)) touchingControllers.Add(controller);
         }
     }
@@ -88,11 +91,10 @@ public class Grabbable : MonoBehaviour {
         if (other.tag.Equals("GameController"))
         {
             SteamVR_TrackedController controller = other.transform.GetComponent<SteamVR_TrackedController>();
-            controller.TriggerClicked += OnControllerTriggerChange;
-            controller.TriggerUnclicked += OnControllerTriggerChange;
-            if(controller.transform == positionController || controller.transform == rotationController)
+            if(controller.transform != positionController && controller.transform != rotationController)
             {
-                UpdateAnchors();
+                controller.TriggerClicked -= OnControllerTriggerChange;
+                controller.TriggerUnclicked -= OnControllerTriggerChange;
             }
             if (touchingControllers.Contains(controller)) touchingControllers.Remove(controller);
         }

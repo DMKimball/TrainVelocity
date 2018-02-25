@@ -18,7 +18,7 @@ public class TrainMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         speed = DefaultSpeed;
-        speedy = GameObject.FindObjectOfType<spedometer>();
+        speedy = GetComponentInChildren<spedometer>();
         heat = GetComponent<heatManagement>();
 	}
 	
@@ -31,29 +31,9 @@ public class TrainMovement : MonoBehaviour {
         // Volume ranges from 0 to 1.
         WindSoundFade.SetVolume(speed / maxSpeed);
 
-        // Patrick testing
-        /*if (Input.GetButtonDown("Fire1")) {
-            //GameObject.Find("[CameraRig]").transform.position
-            //    += (new Vector3(0.1f, 0.0f, 0.0f));
-            speed += maxSpeed/5;
-        }
-        if (Input.GetButtonDown("Fire2")) {
-            //GameObject.Find("[CameraRig]").transform.position
-            //    += (new Vector3(-0.1f, 0.0f, 0.0f));
-            speed -= maxSpeed/5;
-        }
-        GameObject.Find("[CameraRig]").transform.position = 
-            new Vector3(transform.position.x, transform.position.y,
-                GameObject.Find("train4").transform.position.z);
-        */
-
         speed = Mathf.Max(speed - DecelerationPerSecond * Time.deltaTime, DefaultSpeed);
-        transform.position += transform.forward * speed * Time.deltaTime;
+        Translate(transform.forward * speed * Time.deltaTime);
         speedy.setSpeed(speed / maxSpeed);
-        foreach(Grabbable obj in looseObjects)
-        {
-            obj.Translate(transform.forward * speed * Time.deltaTime);
-        }
 
 	}
 
@@ -61,5 +41,14 @@ public class TrainMovement : MonoBehaviour {
     {
         speed += AccelerationPerFuel;
         heat.addFuel();
+    }
+
+    public void Translate(Vector3 translation)
+    {
+        transform.position += translation;
+        foreach (Grabbable obj in looseObjects)
+        {
+            obj.Translate(translation);
+        }
     }
 }

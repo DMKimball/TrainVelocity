@@ -31,11 +31,6 @@ public class CoalMover : MonoBehaviour {
             coal.rotation = coalAnchor.rotation;
             coal.localScale = coalAnchor.localScale;
         }
-
-        // Patrick Testing
-        /*if (Input.GetButtonDown("Fire1")) {
-            PlayRandomClip(coalPickupSounds);
-        }*/
 	}
 
     void OnTriggerEnter(Collider other)

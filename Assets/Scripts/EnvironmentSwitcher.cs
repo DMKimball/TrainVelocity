@@ -11,6 +11,8 @@ public class EnvironmentSwitcher : MonoBehaviour {
     [SerializeField] private GameObject[] terrainPrefabs;
     [SerializeField] private float terrainLength = 500.0f;
     [SerializeField] private TrainMovement train;
+    [SerializeField] private Fade fadetoblack;
+    [SerializeField] private float fadeTime = 10.0f;
     [SerializeField] private float DestroyDelay = 0.1f;
 
     [SerializeField] private int baseNumWaterSpawns = 1;
@@ -26,8 +28,11 @@ public class EnvironmentSwitcher : MonoBehaviour {
     [SerializeField] private int totalStages;
     public int numTimesSwitched;
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField] private AudioSource winSound;
+    [SerializeField] private AudioSource loseSound;
+
+    // Use this for initialization
+    void Start () {
         numTimesSwitched = 0;
 	}
 
@@ -57,10 +62,35 @@ public class EnvironmentSwitcher : MonoBehaviour {
         numTimesSwitched++;
         progress.value = ((float) numTimesSwitched) / (float)totalStages;
 
+        if(numTimesSwitched == totalStages)
+        {
+            fadetoblack.FadeOut(fadeTime);
+            if (train.IsAtMaxSpeed())
+            {
+                train.StartFlying();
+                winSound.Play();
+            }
+            else
+            {
+                loseSound.Play();
+            }
+            StartCoroutine(EndGame(fadeTime + 1));
+        }
+
     }
 
     public int GetSwitchCount()
     {
         return numTimesSwitched;
+    }
+
+    IEnumerator EndGame(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }

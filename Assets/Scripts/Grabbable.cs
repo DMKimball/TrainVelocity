@@ -39,7 +39,7 @@ public class Grabbable : MonoBehaviour {
         if(positionController != null)
         {
             Vector3 posOffset = positionAnchor.transform.position - transform.position;
-            transform.position = positionController.position + posOffset + positionController.rotation * PosCorrection;
+            transform.position = positionController.position - posOffset + positionController.rotation * PosCorrection;
 
             if(rotationController != null)
             {
@@ -182,5 +182,10 @@ public class Grabbable : MonoBehaviour {
     public void DeregisterAttachment(Transform attachment)
     {
         if (attachedObjs.Contains(attachment)) attachedObjs.Remove(attachment);
+    }
+
+    public bool IsGrabbing()
+    {
+        return positionController != null;
     }
 }

@@ -43,8 +43,10 @@ public class TargetHit : MonoBehaviour {
             if (currPosT >= 1.0f)
             {
                 dropping = false;
-                GameObject.Find("eaterTank").
-                    GetComponentInChildren<AudioSource>().Play();
+                var a = GameObject.Find("eaterTank").
+                    GetComponentInChildren<AudioSource>();
+                a.pitch = 1 + Random.Range(-0.1f, 0.1f);
+                a.Play();
             }
         }
 	}

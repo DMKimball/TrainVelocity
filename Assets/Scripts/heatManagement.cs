@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class heatManagement : MonoBehaviour {
-    float heatLevel=0;
+    public float heatLevel = 0;
     HeatMeter heatMeter;
     public int heatReductionRate;
     float heatReductionProgress=0;
@@ -24,10 +24,6 @@ public class heatManagement : MonoBehaviour {
         else
         {
             heatReductionProgress++;
-        }
-        if (heatLevel>100)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 	}
     public void addFuel()

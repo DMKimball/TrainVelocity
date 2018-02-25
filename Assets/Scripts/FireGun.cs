@@ -6,9 +6,12 @@ public class FireGun : MonoBehaviour {
 
     [SerializeField] Transform firingOrigin;
     [SerializeField] float cooldown = 0.5f;
+    [SerializeField] GameObject tracerPrefab;
 
     RevolverController revController;
     private bool onCooldown;
+    GameObject tracer;
+    Grabbable grabScript;
 
     private List<SteamVR_TrackedController> touchingControllers;
 
@@ -18,6 +21,8 @@ public class FireGun : MonoBehaviour {
         touchingControllers = new List<SteamVR_TrackedController>();
         revController = GetComponent<RevolverController>();
         onCooldown = false;
+        tracer = null;
+        grabScript = GetComponent<Grabbable>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -62,13 +67,17 @@ public class FireGun : MonoBehaviour {
         a.Play();
 
         // Haptic feedback on first touching controller (hacky...)
-        if (touchingControllers.Count > 0) {
+        /*if (touchingControllers.Count > 0) {
             var controller = touchingControllers[0];
-            controller.TriggerHapticPulse();
-        }
+            controller.TriggerHapticPulse(0.1f);
+        }*/
 
         RaycastHit rayHit;
-        bool hitSomething = Physics.Raycast(firingOrigin.position, firingOrigin.forward, out rayHit);
+        bool hitSomething = Physics.Raycast(firingOrigin.position, firingOrigin.forward, out rayHit, float.PositiveInfinity);
+
+        tracer = Instantiate(tracerPrefab, firingOrigin.position, firingOrigin.rotation);
+        grabScript.RegisterAttachment(tracer.transform);
+
         StartCoroutine(AnimateCylinder());
 
         if(hitSomething)
@@ -83,6 +92,9 @@ public class FireGun : MonoBehaviour {
         revController.revRotSpeed = 60.0f / cooldown;
         revController.RotateCyl();
         yield return new WaitForSeconds(cooldown);
+        grabScript.DeregisterAttachment(tracer.transform);
+        Destroy(tracer);
+
         onCooldown = false;
     }
 }

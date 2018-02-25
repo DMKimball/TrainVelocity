@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class EnvironmentSwitcher : MonoBehaviour {
 
     [SerializeField] private Transform PreviousTerrain;
@@ -18,10 +18,13 @@ public class EnvironmentSwitcher : MonoBehaviour {
     [SerializeField] private waterMeter water;
     [SerializeField] private Vector3 baseLocation;
     [SerializeField] private Vector3 maxOffset;
+    [SerializeField] private Vector2 positionNoiseMax;
+    [SerializeField] private Vector2 positionNoiseMin;
     [SerializeField] private GameObject waterPrefab;
     [SerializeField] private Vector3 rotCorrection;
-
-    private int numTimesSwitched;
+    [SerializeField] private Slider progress;
+    [SerializeField] private int totalStages;
+    public int numTimesSwitched;
 
 	// Use this for initialization
 	void Start () {
@@ -30,12 +33,16 @@ public class EnvironmentSwitcher : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        
+        if (!other.tag.Equals("Train")) return;
         GameObject temp = Instantiate(terrainPrefabs[Random.Range(0, terrainPrefabs.Length)], NextTerrain.position, Quaternion.identity, transform);
         int numSpawns = baseNumWaterSpawns + (int)Mathf.Floor((1.0f - water.waterValue) / bonusSpawnPerMissing);
         for(int count = 0; count < numSpawns; count++)
         {
-            Instantiate(waterPrefab, temp.transform.position + baseLocation + Random.Range(0.0f, 1.0f) * maxOffset, Quaternion.Euler(rotCorrection), temp.transform);
+            Vector3 location = temp.transform.position + baseLocation + Random.Range(0.0f, 1.0f) * maxOffset;
+            location.x += Random.Range(positionNoiseMin.x, positionNoiseMax.x);
+            location.y += Random.Range(positionNoiseMin.y, positionNoiseMax.y);
+            GameObject spawn = Instantiate(waterPrefab, location, Quaternion.Euler(rotCorrection), temp.transform);
+            spawn.GetComponentInChildren<TargetHit>().water = water;
         }
         PreviousTerrain.position += transform.right * terrainLength;
         CurrentTerrain.position += transform.right * terrainLength;
@@ -45,9 +52,11 @@ public class EnvironmentSwitcher : MonoBehaviour {
         PreviousTerrain = CurrentTerrain;
         CurrentTerrain = NextTerrain;
         NextTerrain = temp.transform;
-
+        
         train.Translate(transform.right * terrainLength);
         numTimesSwitched++;
+        progress.value = ((float) numTimesSwitched) / (float)totalStages;
+
     }
 
     public int GetSwitchCount()

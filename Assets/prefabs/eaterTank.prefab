@@ -117,6 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224712254394663534}
   - component: {fileID: 114343021703121770}
+  - component: {fileID: 114106208486113780}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -388,9 +389,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1149649509500298}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.540472, y: 3.5925236, z: 26.660175}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.92525876, z: -0, w: 0.37933663}
+  m_LocalPosition: {x: -1.835161, y: -0.087143004, z: -1.2599208}
+  m_LocalScale: {x: 0.4285714, y: 0.42857143, z: 0.4285714}
   m_Children:
   - {fileID: 4902804578866084}
   - {fileID: 4404809007693220}
@@ -403,7 +404,7 @@ Transform:
   - {fileID: 224836885179824106}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 45.415, z: 0}
 --- !u!23 &23083356689782050
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -749,6 +750,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114106208486113780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1396533916186902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe00b6e6335db8941b1b06adb952461e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterValue: 0
 --- !u!114 &114245605791749580
 MonoBehaviour:
   m_ObjectHideFlags: 1

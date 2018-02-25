@@ -9,6 +9,9 @@ public class TargetHit : MonoBehaviour {
     [SerializeField] Transform dropBarrel;
     [SerializeField] Transform dropTarget;
     [SerializeField] float dropTime;
+    [SerializeField] float waterValue;
+
+    public waterMeter water;
 
     private bool rotating, dropping, expended;
 
@@ -43,10 +46,13 @@ public class TargetHit : MonoBehaviour {
             if (currPosT >= 1.0f)
             {
                 dropping = false;
-                var a = GameObject.Find("eaterTank").
-                    GetComponentInChildren<AudioSource>();
+
+                var a = water.GetComponent<AudioSource>();
                 a.pitch = 1 + Random.Range(-0.1f, 0.1f);
                 a.Play();
+
+                water.waterValue = Mathf.Min(1.0f, water.waterValue + waterValue);
+                water.updateSlider();
             }
         }
 	}
@@ -58,20 +64,9 @@ public class TargetHit : MonoBehaviour {
 
         GetComponentInChildren<AudioSource>().Play();
 
-        //var c = DelayedWaterSound(1.5f,
-        //    GameObject.Find("eaterTank").GetComponentInChildren<AudioSource>());
-        //StartCoroutine(c);
-
         currRotT = 0.0f;
         startRot = rotationTarget.rotation;
         targetRot = Quaternion.AngleAxis(180.0f, Vector3.up) * rotationTarget.rotation;
         rotating = true;
     }
-
-    /*private IEnumerator DelayedWaterSound(float waitTime, AudioSource audioSource) {
-        while (true) {
-            yield return new WaitForSeconds(waitTime);
-            audioSource.Play();
-        }
-    }*/
 }

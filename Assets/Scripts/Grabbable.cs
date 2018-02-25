@@ -12,8 +12,7 @@ public class Grabbable : MonoBehaviour {
     [SerializeField] private float FPTolerance = 0.001f;
     [SerializeField] private float SnapbackTime = 0.5f;
     [SerializeField] private Transform SnapLocation;
-
-    private Rigidbody grabbableBody;
+    
     private List<SteamVR_TrackedController> touchingControllers;
     private Transform positionController;
     private Transform rotationController;
@@ -24,7 +23,6 @@ public class Grabbable : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        grabbableBody = GetComponent<Rigidbody>();
         touchingControllers = new List<SteamVR_TrackedController>();
         positionController = null;
         rotationController = null;
